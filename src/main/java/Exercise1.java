@@ -1,65 +1,49 @@
-import java.text.DecimalFormat;
-
 public class Exercise1 {
 
-    private static DecimalFormat df = new DecimalFormat("0.0");
-
-    private double a1;
-    private double a2;
-    private double b1;
-    private double b2;
-    private double c1;
-    private double c2;
-    private double AB;
-    private double BC;
-    private double AC;
+    private double a;
+    private double b;
+    private double c;
 
     public Exercise1() {
     }
 
-    public Exercise1(double a1, double a2, double b1, double b2, double c1, double c2) {
-        this.a1 = a1;
-        this.a2 = a2;
-        this.b1 = b1;
-        this.b2 = b2;
-        this.c1 = c1;
-        this.c2 = c2;
-        AB = getLength(a1, a2, b1, b2);
-        BC = getLength(b1, b2, c1, c2);
-        AC = getLength(a1, a2, c1, c2);
+    public Exercise1(double x1, double y1, double x2, double y2, double x3, double y3) {
+        a = getLength(x1, y1, x2, y2);
+        b = getLength(x2, y2, x3, y3);
+        c = getLength(x1, y1, x3, y3);
     }
 
-    public double getAB() {
-        return this.AB;
+    public double geta() {
+        return this.a;
     }
 
-    public double getBC() {
-        return this.BC;
+    public double getb() {
+        return this.b;
     }
 
-    public double getAC() {
-        return this.AC;
+    public double getc() {
+        return this.c;
     }
 
     public static double getLength(double p1, double p2, double q1, double q2) {
-        return Double.parseDouble(df.format(Math.sqrt((q1 - p1) * (q1 - p1) + (q2 - p2) * (q2 - p2))));
+        return Math.sqrt((q1 - p1) * (q1 - p1) + (q2 - p2) * (q2 - p2));
     }
 
     public boolean isRightTriangle() {
-        return (this.AB * this.AB + this.BC * this.BC == this.AC * this.AC
-                || this.AB * this.AB + this.AC * this.AC == this.BC * this.BC
-                || this.BC * this.BC + this.AC * this.AC == AB * AB);
+        return (this.a * this.a + this.b * this.b == this.c * this.c
+                || this.a * this.a + this.c * this.c == this.b * this.b
+                || this.b * this.b + this.c * this.c == a * a);
     }
 
     public String getType() {
-        double p = (this.AB + this.BC + this.AC) / 2;
-        if (this.AB <= 0 || this.BC <= 0 || this.AC <= 0 || this.AB >= p || this.BC >= p || this.AC >= p) {
+        double p = (this.a + this.b + this.c) / 2;
+        if (this.a <= 0 || this.b <= 0 || this.c <= 0 || this.a >= p || this.b >= p || this.c >= p) {
             return "tam giac khong hop le";
         }
-        if (this.AB == this.BC && this.AC == this.BC) {
+        if (this.a == this.b && this.c == this.b) {
             return "tam giac deu";
         }
-        if ((this.AB - this.BC) * (this.AB - this.AC) * (this.BC - this.AC) == 0) {
+        if ((this.a - this.b) * (this.a - this.c) * (this.b - this.c) == 0) {
             return "tam giac can";
         }
         if (isRightTriangle()) {
@@ -69,11 +53,11 @@ public class Exercise1 {
     }
 
     public double getArea() {
-        double p = (this.AB + this.BC + this.AC) / 2;
-        return Math.sqrt(p * (p - this.AB) * (p - this.BC) * (p - this.AC));
+        double p = (this.a + this.b + this.c) / 2;
+        return Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
     }
 
     public double getPerimeter() {
-        return this.AB + this.AC + this.BC;
+        return this.a + this.c + this.b;
     }
 }

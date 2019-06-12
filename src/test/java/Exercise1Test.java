@@ -6,19 +6,19 @@ public class Exercise1Test {
 
     @Test
     public void test_getLength() {
-        Assert.assertEquals(triangle.getAB(), 2.2, 0.1);
-        Assert.assertEquals(triangle.getBC(), 4.2, 0.1);
-        Assert.assertEquals(triangle.getAC(), 2.2, 0.1);
+        Assert.assertEquals(triangle.geta(), 2.23, 0.01);
+        Assert.assertEquals(triangle.getb(), 4.24, 0.01);
+        Assert.assertEquals(triangle.getc(), 2.23, 0.01);
     }
 
     @Test
     public void test_getPerimeter() {
-        Assert.assertEquals(triangle.getPerimeter(), 8.6, 0.1);
+        Assert.assertEquals(triangle.getPerimeter(), 8.7, 0.1);
     }
 
     @Test
     public void test_getArea() {
-        Assert.assertEquals(triangle.getArea(), 1.37, 0.1);
+        Assert.assertEquals(triangle.getArea(), 1.5, 0.1);
     }
 
     @Test
