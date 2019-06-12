@@ -33,7 +33,7 @@ public class Exercise1 {
     }
 
     public String getType() {
-        double p = (a2 + b2 + c2) / 2;
+        double p = getPerimeter() / 2;
         if (a2 >= p * p || b2 >= p * p || c2 >= p * p) {
             return "tam giac khong hop le";
         }
