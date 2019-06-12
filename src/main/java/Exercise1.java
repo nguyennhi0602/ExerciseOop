@@ -4,9 +4,6 @@ public class Exercise1 {
     private double b;
     private double c;
 
-    public Exercise1() {
-    }
-
     public Exercise1(double x1, double y1, double x2, double y2, double x3, double y3) {
         a = getLength(x1, y1, x2, y2);
         b = getLength(x2, y2, x3, y3);
@@ -30,9 +27,9 @@ public class Exercise1 {
     }
 
     public boolean isRightTriangle() {
-        return (this.a * this.a + this.b * this.b == this.c * this.c
-                || this.a * this.a + this.c * this.c == this.b * this.b
-                || this.b * this.b + this.c * this.c == a * a);
+        return (Math.sqrt(this.a * this.a + this.b * this.b) == this.c
+                || Math.sqrt(this.a * this.a + this.c * this.c) == this.b
+                || Math.sqrt(this.b * this.b + this.c * this.c )== this.a );
     }
 
     public String getType() {
