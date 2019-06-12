@@ -15,17 +15,18 @@ public class Circle implements Shape {
     }
 
     @Override
-    public void showInfo() {
+    public String showInfo() {
+        return "Dien tich: " + this.getArea() + ", chu vi: " + this.getPerimeter();
     }
 
     @Override
     public double getArea() {
-        return 0;
+        return 2 * Math.PI * this.r;
     }
 
     @Override
     public double getPerimeter() {
-        return 0;
+        return Math.PI * this.r * this.r;
     }
 
 }

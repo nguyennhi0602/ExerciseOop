@@ -1,7 +1,7 @@
 package oop2;
 
 public interface Shape {
-    public  void showInfo();
+    public  String showInfo();
     public double getArea();
     public double getPerimeter();
     default public double calculateDistance(double p1, double p2, double q1, double q2){
