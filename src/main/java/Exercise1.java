@@ -1,46 +1,46 @@
 public class Exercise1 {
 
-    private double a;
-    private double b;
-    private double c;
+    private double a2;
+    private double b2;
+    private double c2;
 
     public Exercise1(double x1, double y1, double x2, double y2, double x3, double y3) {
-        a = getLength(x1, y1, x2, y2);
-        b = getLength(x2, y2, x3, y3);
-        c = getLength(x1, y1, x3, y3);
+        a2 = getLength2(x1, y1, x2, y2);
+        b2 = getLength2(x2, y2, x3, y3);
+        c2 = getLength2(x1, y1, x3, y3);
     }
 
-    public double geta() {
-        return this.a;
+    public double geta2() {
+        return a2;
     }
 
-    public double getb() {
-        return this.b;
+    public double getb2() {
+        return b2;
     }
 
-    public double getc() {
-        return this.c;
+    public double getc2() {
+        return c2;
     }
 
-    public static double getLength(double p1, double p2, double q1, double q2) {
-        return Math.sqrt((q1 - p1) * (q1 - p1) + (q2 - p2) * (q2 - p2));
+    public static double getLength2(double p1, double p2, double q1, double q2) {
+        return (q1 - p1) * (q1 - p1) + (q2 - p2) * (q2 - p2);
     }
 
     public boolean isRightTriangle() {
-        return (Math.sqrt(this.a * this.a + this.b * this.b) == this.c
-                || Math.sqrt(this.a * this.a + this.c * this.c) == this.b
-                || Math.sqrt(this.b * this.b + this.c * this.c )== this.a );
+        return a2 + b2 == c2
+                || a2 + c2 == b2
+                || b2 + c2 == a2;
     }
 
     public String getType() {
-        double p = (this.a + this.b + this.c) / 2;
-        if (this.a <= 0 || this.b <= 0 || this.c <= 0 || this.a >= p || this.b >= p || this.c >= p) {
+        double p = (a2 + b2 + c2) / 2;
+        if (a2 >= p * p || b2 >= p * p || c2 >= p * p) {
             return "tam giac khong hop le";
         }
-        if (this.a == this.b && this.c == this.b) {
+        if (a2 == b2 && c2 == b2) {
             return "tam giac deu";
         }
-        if ((this.a - this.b) * (this.a - this.c) * (this.b - this.c) == 0) {
+        if ((a2 - b2) * (a2 - c2) * (b2 - c2) == 0) {
             return "tam giac can";
         }
         if (isRightTriangle()) {
@@ -50,11 +50,11 @@ public class Exercise1 {
     }
 
     public double getArea() {
-        double p = (this.a + this.b + this.c) / 2;
-        return Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
+        double p = getPerimeter() / 2;
+        return Math.sqrt(p * (p - (Math.sqrt(a2)) )* (p - (Math.sqrt(b2))) * (p - Math.sqrt(c2)));
     }
 
     public double getPerimeter() {
-        return this.a + this.c + this.b;
+        return (Math.sqrt(a2) + Math.sqrt(b2) + Math.sqrt(c2));
     }
 }
