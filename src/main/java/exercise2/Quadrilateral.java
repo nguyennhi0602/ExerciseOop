@@ -20,7 +20,7 @@ public class Quadrilateral implements Shape {
 
     @Override
     public String showInfo() {
-        if (!(Triangle.isTriangle(a, b, dc1) && Triangle.isTriangle(c, d, dc1)&&Triangle.isTriangle(a,d,dc2)&&Triangle.isTriangle(b,c,dc2))) {
+        if (!isQuadrilateral()) {
             return "tu giac khong hop le";
         }
         return "Dien tich: " + getArea() + ", chu vi: " + getPerimeter();
@@ -43,4 +43,13 @@ public class Quadrilateral implements Shape {
         return Math.sqrt(p * (p - x) * (p - y) * (p - z));
     }
 
+    public boolean isQuadrilateral(){
+        double [][] triangle= {{a,b,dc1},{c,d,dc1},{a,d,dc2},{b,c,dc2}};
+        for(int i=0;i<triangle.length;i++){
+            if(!Triangle.isTriangle(triangle[i][0],triangle[i][1],triangle[i][2])){
+                return false;
+            }
+        }
+        return true;
+    }
 }
