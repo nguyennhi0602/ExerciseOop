@@ -1,6 +1,5 @@
 package exericse2test;
 
-import exercise2.Circle;
 import exercise2.Triangle;
 import org.junit.Assert;
 import org.junit.Test;
