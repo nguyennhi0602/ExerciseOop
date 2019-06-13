@@ -24,5 +24,8 @@ public class QuadrilateralTest {
     public void test_showInfo(){
         Assert.assertEquals(new Quadrilateral(0,0,0,1,2,0,3,-1).showInfo(),"Dien tich: 2.0, chu vi: 7.812559200041264");
         Assert.assertEquals(new Quadrilateral(-1,0,0,0,0,4,0,4).showInfo(),"tu giac khong hop le");
+        Assert.assertEquals(new Quadrilateral(0,4,-1,0,0,0,0,4).showInfo(),"tu giac khong hop le");
+        Assert.assertEquals(new Quadrilateral(0,4,0,4,-1,0,0,0).showInfo(),"tu giac khong hop le");
+        Assert.assertEquals(new Quadrilateral(0,0,0,4,0,4,-1,0).showInfo(),"tu giac khong hop le");
     }
 }
