@@ -20,10 +20,11 @@ public class Quadrilateral implements Shape {
 
     @Override
     public String showInfo() {
-        if (!(Triangle.isTriangle(a, b, dc1) && Triangle.isTriangle(c, d, dc1)&&Triangle.isTriangle(a,d,dc2)&&Triangle.isTriangle(b,c,dc2))) {
-            return "tu giac khong hop le";
+        if ((Triangle.isTriangle(a, b, dc1) && Triangle.isTriangle(c, d, dc1)&&Triangle.isTriangle(a,d,dc2)&&Triangle.isTriangle(b,c,dc2))) {
+            return "Dien tich: " + getArea() + ", chu vi: " + getPerimeter();
         }
-        return "Dien tich: " + getArea() + ", chu vi: " + getPerimeter();
+        return "tu giac khong hop le";
+
     }
 
     @Override

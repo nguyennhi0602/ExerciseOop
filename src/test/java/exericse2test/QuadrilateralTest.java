@@ -9,6 +9,7 @@ public class QuadrilateralTest {
     public void test_getArea(){
         Assert.assertEquals(new Quadrilateral(0,0,0,1,2,0,3,-1).getArea(),2,0);
         Assert.assertEquals(new Quadrilateral(-3,0,0,3,2,0,0,1).getArea(),5.000000000000001,0);
+        Assert.assertEquals(new Quadrilateral(0,3,2,0,0,1,-3,0).getArea(),5.000000000000001,0);
     }
     @Test
     public void test_getPerimeter(){

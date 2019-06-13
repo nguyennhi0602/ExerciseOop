@@ -24,6 +24,8 @@ public class TriangleTest {
     @Test
     public void test_isTriangle(){
         Assert.assertTrue(Triangle.isTriangle(1,2,2));
+        Assert.assertFalse(Triangle.isTriangle(8,1,1));
         Assert.assertFalse(Triangle.isTriangle(1,1,8));
+        Assert.assertFalse(Triangle.isTriangle(1,8,1));
     }
 }
