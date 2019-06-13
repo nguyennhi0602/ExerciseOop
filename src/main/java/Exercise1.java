@@ -27,9 +27,7 @@ public class Exercise1 {
     }
 
     public boolean isRightTriangle() {
-        return a2 + b2 == c2
-                || a2 + c2 == b2
-                || b2 + c2 == a2;
+        return a2 + b2 == c2 || a2 + c2 == b2 || b2 + c2 == a2;
     }
 
     public String getType() {

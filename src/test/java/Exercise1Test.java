@@ -24,8 +24,7 @@ public class Exercise1Test {
     @Test
     public void test_type() {
         Assert.assertEquals(new Exercise1(3, 0, -3, 0, 0, 3 * Math.sqrt(3)).getType(), "tam giac deu");
-        Assert.assertEquals(new Exercise1(-3, 0, 0, 3 * Math.sqrt(3), 3, 0).getType(), "tam giac deu");
-        Assert.assertEquals(new Exercise1(-3, 0, 3, 0, 0, 3 * Math.sqrt(3)).getType(), "tam giac deu");
+        Assert.assertEquals(new Exercise1(3, 4,1, 3, 2, 1).getType(), "tam giac can");
         Assert.assertEquals(triangle.getType(), "tam giac can");
         Assert.assertEquals(new Exercise1(0, 0, 2, 0, -1, 0).getType(), "tam giac khong hop le");
         Assert.assertEquals(new Exercise1(-1, 0, 0, 0, 2, 0).getType(), "tam giac khong hop le");
