@@ -1,12 +1,9 @@
-package oop2;
+package exercise2;
 
 public class Circle implements Shape {
     private double x;
     private double y;
     private double r;
-
-    public Circle() {
-    }
 
     public Circle(double x, double y, double r) {
         this.x = x;
@@ -16,6 +13,9 @@ public class Circle implements Shape {
 
     @Override
     public String showInfo() {
+        if(r<=0){
+            return "hinh tron khong hop le";
+        }
         return "Dien tich: " + this.getArea() + ", chu vi: " + this.getPerimeter();
     }
 
