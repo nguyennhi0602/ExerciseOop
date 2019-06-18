@@ -4,9 +4,8 @@ import java.util.List;
 public class Exercise6<T> {
     private List<T> stackNumber = new ArrayList<>();
 
-    public List<T> push(T x) {
+    public void push(T x) {
         stackNumber.add(x);
-        return stackNumber;
     }
 
     public T pop() {
@@ -19,7 +18,7 @@ public class Exercise6<T> {
     }
 
     public boolean isEmpty() {
-        return stackNumber.size() == 0;
+        return stackNumber.isEmpty();
     }
 
 }
