@@ -9,7 +9,7 @@ public class Exercise5<T> {
     }
 
     public T dequeue() {
-        if (queueNumber.isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         T result = queueNumber.get(0);
@@ -18,7 +18,7 @@ public class Exercise5<T> {
     }
 
     public T peek() {
-        return queueNumber.isEmpty()? null : queueNumber.get(0);
+        return isEmpty()? null : queueNumber.get(0);
     }
 
     public boolean isEmpty() {
