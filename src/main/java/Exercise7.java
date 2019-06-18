@@ -4,9 +4,8 @@ import java.util.List;
 public class Exercise7<T> {
     private List<T> queueNumber = new ArrayList<>();
 
-    public List<T> enqueue(T x) {
+    public void enqueue(T x) {
         queueNumber.add(x);
-        return queueNumber;
     }
 
     public T dequeue() {
@@ -23,6 +22,6 @@ public class Exercise7<T> {
     }
 
     public boolean isEmpty() {
-        return this.queueNumber.size() == 0;
+        return queueNumber.isEmpty();
     }
 }
