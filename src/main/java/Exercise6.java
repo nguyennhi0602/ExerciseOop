@@ -9,11 +9,12 @@ public class Exercise6<T> {
     }
 
     public T pop() {
-        if (stackNumber.isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
-        T result = stackNumber.get(stackNumber.size() - 1);
-        stackNumber.remove(stackNumber.get(stackNumber.size() - 1));
+        int topIndex=stackNumber.size() - 1;
+        T result = stackNumber.get(topIndex);
+        stackNumber.remove(result);
         return result;
     }
 
