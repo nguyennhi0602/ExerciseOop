@@ -1,10 +1,12 @@
 package exercise3;
 
+import java.util.Date;
+
 public class Student {
     private int id;
     private String firstName;
     private String lastName;
-    private String birthday;
+    private Date birthday;
     private String className;
     private String address;
 
@@ -29,7 +31,7 @@ public class Student {
         return lastName;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
@@ -41,11 +43,23 @@ public class Student {
         return address;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthday=" + birthday +
+                ", className='" + className + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
     public static class StudentBuilder {
         public int id;
         public String firstName;
         public String lastName;
-        public String birthday;
+        public Date birthday;
         public String className;
         public String address;
 
@@ -71,7 +85,7 @@ public class Student {
             return this;
         }
 
-        public StudentBuilder setBirthday(String birthday) {
+        public StudentBuilder setBirthday(Date birthday) {
             this.birthday = birthday;
             return this;
         }
@@ -86,6 +100,10 @@ public class Student {
             return this;
         }
 
+        public Student build() {
+            return new Student(this);
+        }
+
         @Override
         public String toString() {
             return "Student{" +
@@ -98,8 +116,5 @@ public class Student {
                     '}';
         }
 
-        public Student build() {
-            return new Student(this);
-        }
     }
 }
