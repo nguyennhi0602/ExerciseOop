@@ -27,17 +27,19 @@ public class StudentController {
         saveToFile();
     }
 
-    public static boolean deleteStudent(int id) {
-        boolean result = students.removeIf(o -> o.getId() == id);
+    public static void deleteStudent(int id) {
+        for(Student stu:students){
+            if(stu.getId()==id){
+                students.remove(stu);
+            }
+        }
         saveToFile();
-        return result;
     }
 
     public static void saveToFile(){
         try {
             WriteReadFile.writeToJsonFile(file, students);
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

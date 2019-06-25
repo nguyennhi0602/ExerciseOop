@@ -37,7 +37,9 @@ public class StudentControllerTest {
     @Test
     public void test_deleteStudent() {
         StudentController sc = new StudentController("temp.json");
-        Assert.assertFalse(sc.deleteStudent(38));
+        int length = sc.getStudents().size();
+        sc.deleteStudent(1);
+        Assert.assertEquals(sc.getStudents().size(), length - 1);
     }
 
     @Test
