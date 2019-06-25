@@ -1,48 +1,37 @@
 package exercise3;
 
 import com.google.gson.Gson;
-import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WriteReadFile {
 
-    private static void writeFile(File file,List<String> students) {
-        FileWriter fw=null;
-        BufferedWriter bw=null;
-        try {
-            fw=new FileWriter(file);
-            bw=new BufferedWriter(fw);
-            for(String stu:students) {
-                bw.write(stu);
-            }
-            bw.close();
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static Gson gson = new Gson();
+
+    public static <T> List<T> readJsonFile(File jsonFile, Class<T[]> clazz) throws IOException {
+        FileReader fileReader = new FileReader(jsonFile);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String row;
+        StringBuilder json = new StringBuilder();
+        while ((row = bufferedReader.readLine()) != null) {
+            json.append(row);
         }
+        T[] arr = gson.fromJson(json.toString(), clazz);
+        List<T> objects = new ArrayList<>(Arrays.asList(arr));
+        bufferedReader.close();
+        fileReader.close();
+        return objects;
     }
 
-    public static List<Student> readFile(File file){
-        List<Student> students = new ArrayList<>();
-        FileReader fr = null;
-        BufferedReader br = null;
-        try {
-            fr = new FileReader(file);
-            br = new BufferedReader(fr);
-            Gson gson=new Gson();
-            String row = "";
-            while ((row = br.readLine()) != null) {
-                Student student=gson.fromJson(row,Student.class);
-                students.add(student);
-            }
-            br.close();
-            fr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return students;
+    public static <T> void writeToJsonFile(File file, List<T> objects) throws IOException {
+        FileWriter fileWriter = new FileWriter(file, false);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        String json = gson.toJson(objects);
+        bufferedWriter.append(json);
+        bufferedWriter.close();
+        fileWriter.close();
     }
 }

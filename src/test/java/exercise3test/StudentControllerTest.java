@@ -1,41 +1,72 @@
 package exercise3test;
+
 import exercise3.Student;
 import exercise3.StudentController;
+import exercise3.WriteReadFile;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.IOException;
 import java.util.List;
 
 public class StudentControllerTest {
-    private static Student student2=Student.StudentBuilder.newStudentBuilder()
-            .setId(1).setFirstName("Nhi").setLastName("Nguyen")
-            .setBirthday(new Date("06/02/1997"))
-            .setClassName("15T3").setAddress("Da Nang").build();
-
-    private static Student student1=Student.StudentBuilder.newStudentBuilder()
-            .setId(2).setFirstName("Thu").setLastName("Nguyen")
-            .setBirthday(new Date("29/01/1997"))
-            .setClassName("15T3").setAddress("Da Nang").build();
+    private static List<Student> students;
+    private static File file_origin = new File("students.json");
+    private static File file_temp = new File("temp.json");
 
     @Test
-    public void test_addStudent(){
-        StudentController studentController=new StudentController();
-        Assert.assertNull(null);
-        studentController.addStudent(student1);
-        studentController.addStudent(student2);
-        Assert.assertEquals(studentController.getStudents().size(),2);
+    public void test_addStudent() {
+        StudentController sc = new StudentController("temp.json");
+
+        int default_length = sc.getStudents().size();
+
+        sc.addStudent(Student.StudentBuilder.newStudentBuilder().setId(1).setFirstName("Hau").setLastName("Bui").setClassName("112").build());
+        sc.addStudent(Student.StudentBuilder.newStudentBuilder().setId(2).setFirstName("Nhi").setLastName("Nguyen").setClassName("112").build());
+        System.out.println(default_length);
+        Assert.assertEquals(sc.getStudents().size(), default_length + 2);
     }
 
-//    @Test
-//    public void test_deleteStudent(){
-//        StudentController studentController=new StudentController();
-//        int len=studentController.getStudents().size();
-//        Assert.assertNull(null);
-//        studentController.addStudent(student);
-//        Assert.assertEquals(studentController.getStudents().size(),len + 1);
-//    }
+    @Test
+    public void test_getById() {
+        StudentController sc = new StudentController("students.json");
+        Assert.assertNotNull(sc.getById(2));
+        Assert.assertNull(sc.getById(5));
+    }
 
+    @Test
+    public void test_deleteStudent() {
+        StudentController sc = new StudentController("students.json");
+        Assert.assertFalse(sc.deleteStudent(38));
+    }
+
+    @Test
+    public void test_loadFromFile() {
+        StudentController sc = new StudentController("students.json");
+        Assert.assertNotNull(sc.loadFromFile());
+    }
+
+    @Test
+    public void test_findByName() {
+        StudentController sc = new StudentController("students.json");
+        Assert.assertNotNull(sc.findByName("nhi"));
+    }
+
+    @Test
+    public void test_findByClass() {
+        StudentController sc = new StudentController("students.json");
+        Assert.assertNotNull(sc.findByClass("15T3"));
+    }
+
+    @AfterClass
+    public static void finalized() {
+        try {
+            students = WriteReadFile.readJsonFile(file_temp, Student[].class);
+            WriteReadFile.writeToJsonFile(file_origin, students);
+        } catch (IOException e) {
+        }
+        file_temp.delete();
+    }
 }
+

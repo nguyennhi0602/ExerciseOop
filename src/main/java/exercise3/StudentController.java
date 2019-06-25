@@ -1,8 +1,7 @@
 package exercise3;
 
-import com.google.gson.Gson;
-
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,10 @@ public class StudentController {
     private static List<Student> students=new ArrayList<>();
     private static File file =new File("D:\\test.json");
 
+    public StudentController(String filePath) {
+        file = new File(filePath);
+        loadFromFile();
+    }
     public static List<Student> getStudents() {
         return students;
     }
@@ -24,28 +27,26 @@ public class StudentController {
         saveToFile();
     }
 
-    public static boolean deleteStudent(Student student){
-        if(students.size()==0){
-            return false;
-        }
-        students.remove(student);
+    public static boolean deleteStudent(int id) {
+        boolean result = students.removeIf(o -> o.getId() == id);
         saveToFile();
-        return true;
+        return result;
     }
 
     public static void saveToFile(){
-        Gson json=new Gson();
-         List<String> temp=new ArrayList<>();
-        for(Student stu:students){
-            String studentJson=json.toJson(stu);
-            System.out.println(studentJson);
-            temp.add(studentJson);
+        try {
+            WriteReadFile.writeToJsonFile(file, students);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        //WriteReadFile.;
     }
 
     public static List<Student> loadFromFile(){
-        return WriteReadFile.readFile(file);
+        try {
+            students = WriteReadFile.readJsonFile(file, Student[].class);
+        } catch (IOException e) {
+        }
+        return students;
     }
 
     public static Student getById(int id){
