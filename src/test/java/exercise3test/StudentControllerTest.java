@@ -22,7 +22,7 @@ public class StudentControllerTest {
 
         int default_length = sc.getStudents().size();
 
-        sc.addStudent(Student.StudentBuilder.newStudentBuilder().setId(1).setFirstName("Hau").setLastName("Bui").setClassName("112").build());
+        sc.addStudent(Student.StudentBuilder.newStudentBuilder().setId(1).setFirstName("haha").setLastName("Le").setClassName("112").build());
         sc.addStudent(Student.StudentBuilder.newStudentBuilder().setId(2).setFirstName("Nhi").setLastName("Nguyen").setClassName("112").build());
         System.out.println(default_length);
         Assert.assertEquals(sc.getStudents().size(), default_length + 2);
@@ -30,32 +30,31 @@ public class StudentControllerTest {
 
     @Test
     public void test_getById() {
-        StudentController sc = new StudentController("students.json");
-        Assert.assertNotNull(sc.getById(2));
-        Assert.assertNull(sc.getById(5));
+        StudentController sc = new StudentController("temp.json");
+        Assert.assertNull(sc.getById(7));
     }
 
     @Test
     public void test_deleteStudent() {
-        StudentController sc = new StudentController("students.json");
+        StudentController sc = new StudentController("temp.json");
         Assert.assertFalse(sc.deleteStudent(38));
     }
 
     @Test
     public void test_loadFromFile() {
-        StudentController sc = new StudentController("students.json");
+        StudentController sc = new StudentController("temp.json");
         Assert.assertNotNull(sc.loadFromFile());
     }
 
     @Test
     public void test_findByName() {
-        StudentController sc = new StudentController("students.json");
+        StudentController sc = new StudentController("temp.json");
         Assert.assertNotNull(sc.findByName("nhi"));
     }
 
     @Test
     public void test_findByClass() {
-        StudentController sc = new StudentController("students.json");
+        StudentController sc = new StudentController("temp.json");
         Assert.assertNotNull(sc.findByClass("15T3"));
     }
 
