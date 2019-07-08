@@ -9,10 +9,10 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class StudentControllerTest {
     private static String fileOrigin = "student.json";
@@ -40,7 +40,19 @@ public class StudentControllerTest {
     @Test
     public void test_getById() throws IOException {
         StudentController sc = new StudentController();
+        Student.StudentBuilder sb = Student
+                .StudentBuilder
+                .newStudentBuilder()
+                .setId(1).setFirstName("haha")
+                .setLastName("Le")
+                .setClassName("112");
+
+        sc.addStudent(sb.build());
+        sc.addStudent(sb
+                .setId(2)
+                .build());
         Assert.assertNull(sc.getById(7));
+        Assert.assertNotNull(sc.getById(1));
     }
 
     @Test
@@ -56,6 +68,8 @@ public class StudentControllerTest {
                 .setClassName("112");
 
         sc.addStudent(sb.build());
+        sc.deleteStudent(10);
+        Assert.assertEquals(sc.getStudents().size(),1);
         sc.deleteStudent(1);
         Assert.assertEquals(sc.getStudents().size(),0);
         sc.saveToFile(fileOrigin);
@@ -71,13 +85,30 @@ public class StudentControllerTest {
     @Test
     public void test_findByName() throws IOException {
         StudentController sc = new StudentController();
-        Assert.assertNotNull(sc.findByName("nhi"));
+        Student.StudentBuilder sb = Student
+                .StudentBuilder
+                .newStudentBuilder()
+                .setId(1).setFirstName("haha")
+                .setLastName("Le")
+                .setClassName("112");
+        sc.addStudent(sb.build());
+        Assert.assertNotNull(sc.findByName("haha"));
+        List<Student> result=new ArrayList<>();
+        Assert.assertEquals(sc.findByName("nu"),result);
     }
-
     @Test
     public void test_findByClass() throws IOException {
         StudentController sc = new StudentController();
-        Assert.assertNotNull(sc.findByClass("15T3"));
+        Student.StudentBuilder sb = Student
+                .StudentBuilder
+                .newStudentBuilder()
+                .setId(1).setFirstName("haha")
+                .setLastName("Le")
+                .setClassName("112");
+        sc.addStudent(sb.build());
+        Assert.assertNotNull(sc.findByClass("112"));
+        List<Student> result=new ArrayList<>();
+        Assert.assertEquals(sc.findByClass("15T3"),result);
     }
 }
 

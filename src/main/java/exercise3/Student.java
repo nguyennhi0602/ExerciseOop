@@ -43,18 +43,6 @@ public class Student {
         return address;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthday=" + birthday +
-                ", className='" + className + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
-
     public static class StudentBuilder {
         public int id;
         public String firstName;
@@ -102,18 +90,6 @@ public class Student {
 
         public Student build() {
             return new Student(this);
-        }
-
-        @Override
-        public String toString() {
-            return "Student{" +
-                    "id=" + id +
-                    ", firstName='" + firstName + '\'' +
-                    ", lastName='" + lastName + '\'' +
-                    ", birthday='" + birthday + '\'' +
-                    ", className='" + className + '\'' +
-                    ", address='" + address + '\'' +
-                    '}';
         }
 
     }

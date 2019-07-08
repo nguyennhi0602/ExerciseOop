@@ -8,7 +8,7 @@ import java.util.List;
 public class StudentController {
 
     private List<Student> students = new ArrayList<>();
-
+    private FileUtils fileUtils=new FileUtils();
     public List<Student> getStudents() {
         return students;
     }
@@ -27,11 +27,11 @@ public class StudentController {
     }
 
     public void saveToFile(String path) throws IOException {
-        FileUtils.writeToJsonFile(path, students);
+        fileUtils.writeToJsonFile(path, students);
     }
 
     public void loadFromFile(String path) throws IOException {
-        students = FileUtils.readJsonFile(path, Student[].class);
+        students = fileUtils.readJsonFile(path, Student[].class);
     }
 
     public Student getById(int id) {
