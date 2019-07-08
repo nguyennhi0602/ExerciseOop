@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class WriteReadFile {
+public class FileUtils {
 
     private static Gson gson = new Gson();
 
