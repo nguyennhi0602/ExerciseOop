@@ -11,8 +11,9 @@ public class FileUtils {
 
     private static Gson gson = new Gson();
 
-    public static <T> List<T> readJsonFile(File jsonFile, Class<T[]> clazz) throws IOException {
-        FileReader fileReader = new FileReader(jsonFile);
+    public static <T> List<T> readJsonFile(String path, Class<T[]> clazz) throws IOException {
+        File file=new File(path);
+        FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String row;
         StringBuilder json = new StringBuilder();
@@ -26,7 +27,8 @@ public class FileUtils {
         return objects;
     }
 
-    public static <T> void writeToJsonFile(File file, List<T> objects) throws IOException {
+    public static <T> void writeToJsonFile(String path, List<T> objects) throws IOException {
+        File file=new File(path);
         FileWriter fileWriter = new FileWriter(file, false);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         String json = gson.toJson(objects);

@@ -1,48 +1,37 @@
 package exercise3;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class StudentController {
 
     private List<Student> students = new ArrayList<>();
-    private File file = new File("D:\\test.json");
-
-    public StudentController(String filePath) throws IOException {
-        file = new File(filePath);
-    }
 
     public List<Student> getStudents() {
         return students;
     }
 
-    public File getFile() {
-        return file;
-    }
-
-    public void addStudent(Student student) throws IOException {
+    public void addStudent(Student student){
         students.add(student);
-        saveToFile();
     }
 
-    public void deleteStudent(int id) throws IOException {
-        for (Student stu : students) {
-            if (stu.getId() == id) {
+    public void deleteStudent(int id){
+        for(int i=0;i<students.size();i++){
+            Student stu=students.get(i);
+            if(stu.getId()==id){
                 students.remove(stu);
             }
         }
-        saveToFile();
     }
 
-    public void saveToFile() throws IOException {
-        FileUtils.writeToJsonFile(file, students);
+    public void saveToFile(String path) throws IOException {
+        FileUtils.writeToJsonFile(path, students);
     }
 
-    public List<Student> loadFromFile() throws IOException {
-        students = FileUtils.readJsonFile(file, Student[].class);
-        return students;
+    public void loadFromFile(String path) throws IOException {
+        students = FileUtils.readJsonFile(path, Student[].class);
     }
 
     public Student getById(int id) {

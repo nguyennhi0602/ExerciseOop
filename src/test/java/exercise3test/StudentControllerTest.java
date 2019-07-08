@@ -11,15 +11,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class StudentControllerTest {
-    private static File file_origin = new File("student.json");
-    private static File file_temp = new File("temp.json");
-
+    private static String fileOrigin = "student.json";
     @Test
     public void test_addStudent() throws IOException {
-        StudentController sc = new StudentController("temp.json");
+        StudentController sc = new StudentController();
 
         int lengthBefore = sc.getStudents().size();
 
@@ -34,47 +33,51 @@ public class StudentControllerTest {
         sc.addStudent(sb
                 .setId(2)
                 .build());
-
         Assert.assertEquals(sc.getStudents().size(), lengthBefore + 2);
+        sc.saveToFile(fileOrigin);
     }
 
     @Test
     public void test_getById() throws IOException {
-        StudentController sc = new StudentController("temp.json");
+        StudentController sc = new StudentController();
         Assert.assertNull(sc.getById(7));
     }
 
     @Test
     public void test_deleteStudent() throws IOException {
-        StudentController sc = new StudentController("temp.json");
-        int length = sc.getStudents().size();
+        StudentController sc = new StudentController();
         sc.deleteStudent(1);
-        Assert.assertEquals(sc.getStudents().size(), length - 1);
+        Assert.assertEquals(sc.getStudents().size(),0);
+        Student.StudentBuilder sb = Student
+                .StudentBuilder
+                .newStudentBuilder()
+                .setId(1).setFirstName("haha")
+                .setLastName("Le")
+                .setClassName("112");
+
+        sc.addStudent(sb.build());
+        sc.deleteStudent(1);
+        Assert.assertEquals(sc.getStudents().size(),0);
+        sc.saveToFile(fileOrigin);
     }
 
     @Test
     public void test_loadFromFile() throws IOException {
-        StudentController sc = new StudentController("temp.json");
-        Assert.assertNotNull(sc.loadFromFile());
+        StudentController sc = new StudentController();
+        sc.loadFromFile(fileOrigin);
+        assertEquals(sc.getStudents().size(), 2);
     }
 
     @Test
     public void test_findByName() throws IOException {
-        StudentController sc = new StudentController("temp.json");
+        StudentController sc = new StudentController();
         Assert.assertNotNull(sc.findByName("nhi"));
     }
 
     @Test
     public void test_findByClass() throws IOException {
-        StudentController sc = new StudentController("temp.json");
+        StudentController sc = new StudentController();
         Assert.assertNotNull(sc.findByClass("15T3"));
-    }
-
-    @AfterClass
-    public static void finalized() throws Exception {
-        List<Student> students = FileUtils.readJsonFile(file_temp, Student[].class);
-        FileUtils.writeToJsonFile(file_origin, students);
-        assertTrue(file_temp.delete());
     }
 }
 

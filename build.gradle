@@ -1,5 +1,5 @@
 apply plugin: 'java'
-apply plugin: 'jacoco'
+//apply plugin: 'jacoco'
 
 group 'com.nhinguyen'
 version '1.0-SNAPSHOT'
@@ -17,11 +17,11 @@ dependencies {
 
     compile group: 'commons-io', name: 'commons-io', version: '2.4'
 }
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
-    }
-}
-
-check.dependsOn jacocoTestReport
+//jacocoTestReport {
+//    reports {
+//        xml.enabled true
+//        html.enabled false
+//    }
+//}
+//
+//check.dependsOn jacocoTestReport
