@@ -6,7 +6,6 @@ public class Student {
     private int id;
     private String firstName;
     private String lastName;
-    private Date birthday;
     private String className;
     private String address;
 
@@ -14,7 +13,6 @@ public class Student {
         this.id = studentBuilder.id;
         this.firstName = studentBuilder.firstName;
         this.lastName = studentBuilder.lastName;
-        this.birthday = studentBuilder.birthday;
         this.className = studentBuilder.className;
         this.address = studentBuilder.address;
     }
@@ -31,10 +29,6 @@ public class Student {
         return lastName;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
     public String getClassName() {
         return className;
     }
@@ -47,7 +41,6 @@ public class Student {
         public int id;
         public String firstName;
         public String lastName;
-        public Date birthday;
         public String className;
         public String address;
 
@@ -70,11 +63,6 @@ public class Student {
 
         public StudentBuilder setLastName(String lastName) {
             this.lastName = lastName;
-            return this;
-        }
-
-        public StudentBuilder setBirthday(Date birthday) {
-            this.birthday = birthday;
             return this;
         }
 

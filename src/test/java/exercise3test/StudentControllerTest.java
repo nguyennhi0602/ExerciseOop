@@ -10,12 +10,31 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class StudentControllerTest {
     private static String fileOrigin = "student.json";
+
+    @Test
+    public void test_getStudent(){
+        Student sb = Student
+                .StudentBuilder
+                .newStudentBuilder()
+                .setId(1).setFirstName("haha")
+                .setLastName("Le")
+                .setClassName("112")
+                .setAddress("da nang")
+                .build();
+        Assert.assertEquals(sb.getId(),1);
+        Assert.assertEquals(sb.getFirstName(),"haha");
+        Assert.assertEquals(sb.getAddress(),"da nang");
+        Assert.assertEquals(sb.getLastName(),"Le");
+        Assert.assertEquals(sb.getClassName(),"112");
+
+    }
     @Test
     public void test_addStudent() throws IOException {
         StudentController sc = new StudentController();
@@ -45,7 +64,8 @@ public class StudentControllerTest {
                 .newStudentBuilder()
                 .setId(1).setFirstName("haha")
                 .setLastName("Le")
-                .setClassName("112");
+                .setClassName("112")
+                .setAddress("da nang");
 
         sc.addStudent(sb.build());
         sc.addStudent(sb
